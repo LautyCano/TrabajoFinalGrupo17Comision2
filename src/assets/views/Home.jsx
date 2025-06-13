@@ -1,0 +1,1 @@
+// aca se debe de mostrar los productos en forma de cards mas un diseño
