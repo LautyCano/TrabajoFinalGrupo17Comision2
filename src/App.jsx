@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import './assets/css/App.css'
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import BarraNav from "./assets/Components/BarraNav";
+import AppRoutes from "./Routes";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      
-    </>
-  )
+    <BrowserRouter>
+      <BarraNav />
+      <div style={{paddingTop: "70px"}}>
+        <AppRoutes />
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
