@@ -41,3 +41,4 @@ export const ProductoList = () => {
     </Container>
   );
 };
+export default ProductoList;
