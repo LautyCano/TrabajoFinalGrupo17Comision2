@@ -30,6 +30,7 @@ const BarraNav = () => {
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/">Lista de Productos</Nav.Link>
             <Nav.Link as={Link} to="/productos/nuevo">Nuevo Producto</Nav.Link>
+            <Nav.Link as={Link} to="/favoritos">Favoritos</Nav.Link>
             <Nav.Link as={Link} to="/productos/acerca">Acerca de</Nav.Link>
           </Nav>
         </Navbar.Collapse>
