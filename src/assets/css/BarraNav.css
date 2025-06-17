@@ -1,0 +1,33 @@
+/* BarraNav.css */
+
+.barra-personalizada {
+  height: 80px;
+  background-color: #1a1a1a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  font-size: 1.05rem;
+  border-bottom: 1px solid #333;
+}
+
+.logo-img {
+  height: 48px;
+  margin-right: 12px;
+  border-radius: 4px;
+}
+
+.logo-nav {
+  font-weight: 600;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  color: #03a9f4;
+}
+
+.nav-enlaces .nav-link {
+  margin-left: 20px;
+  color: #ddd !important;
+  transition: color 0.3s ease;
+}
+
+.nav-enlaces .nav-link:hover {
+  color: #03a9f4 !important;
+}
