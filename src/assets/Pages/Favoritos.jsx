@@ -1,21 +1,40 @@
 //Mostarar los favoritos del usuario
-export default function Favoritos({ favoritos }) {
+import { Card, Row, Col, Container, Button } from "react-bootstrap";
+
+export default function Favoritos({ productos, toggleFavorito }) {
+  // Filtrar los productos favoritos aquí
+  const favoritos = productos.filter((p) => p.favorito);
+
   return (
-    <div className="contenedor-favoritos">
-      <h2>Mis Productos Favoritos</h2>
+    <Container className="mt-4">
+      <h2 className="text-center mb-4">Mis Productos Favoritos</h2>
+
       {favoritos.length === 0 ? (
-        <p>No hay productos favoritos.</p>
+        <p className="text-center">No hay productos favoritos.</p>
       ) : (
-        <ul>
-          {favoritos.map(producto => (
-            <li key={producto.id}>
-              <h3>{producto.nombre}</h3>
-              <p>{producto.descripcion}</p>
-              <p>Precio: ${producto.precio}</p>
-            </li>
+        <Row>
+          {favoritos.map((p) => (
+            <Col md={6} lg={4} key={p.id} className="mb-4">
+              <Card>
+                <Card.Body>
+                  <Card.Title>{p.nombre}</Card.Title>
+                  <Card.Text>{p.descripcion}</Card.Text>
+                  <Card.Text>
+                    <strong>Precio:</strong> ${p.precio}
+                  </Card.Text>
+                  <Button
+                    variant={p.favorito ? "success" : "secondary"}
+                    className="w-100"
+                    onClick={() => toggleFavorito(p.id)}
+                  >
+                    {p.favorito ? "★ En favoritos" : "☆ Añadir a favoritos"}
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
           ))}
-        </ul>
+        </Row>
       )}
-    </div>
+    </Container>
   );
 }

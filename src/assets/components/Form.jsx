@@ -11,10 +11,10 @@
 
 import React from 'react';
 import { useState, useEffect } from "react";
-import { saveProducto, updatedProducto } from "../Services/ServicesPro";
+import { saveProducto, updatedProducto, getProductos } from "../services/ServicesPro";
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
 
-const ProductoForm = ({ producto, onSubmit }) => {
+const ProductoForm = ({ producto, onSubmit, productos, setProductos }) => {
   const [nombre, setNombre] = useState("");
   const [precio, setPrecio] = useState("");
   const [descripcion, setDescripcion] = useState("");
@@ -64,6 +64,8 @@ const ProductoForm = ({ producto, onSubmit }) => {
       updatedProducto(productoData);
     } else {
       saveProducto(productoData);
+      // Actualizar el estado global después de guardar
+      if (setProductos) setProductos(getProductos());
     }
 
     if (onSubmit) {

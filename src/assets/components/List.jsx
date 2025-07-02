@@ -1,37 +1,35 @@
 // Crea una lista que muestre los productos
 // - Cada producto debe mostrar su imagen, nombre, precio, descripcion, categoria.
-
-import React from 'react';
-import { useEffect, useState } from "react";
-import { getProductos, deleteProducto } from "../Services/ServicesPro";
-import ProductoItem from "./Items";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { getProductos, deleteProducto } from "../services/ServicesPro"; 
+import ProductoItem from "./Items";   // ruta relativa correcta
 
-export const ProductoList = () => {
-  const [productos, setProductos] = useState([]);
-
+export const ProductoList = ({ productos, setProductos, toggleFavorito }) => {
+  /* Cargar productos al montar */
   useEffect(() => {
+    setProductos(getProductos());
+  }, [setProductos]);
 
-    const fetchedProductos = getProductos();
-    setProductos(fetchedProductos);
-  }, []);
-
-
+  /* Eliminar */
   const handleDeleteProducto = (id) => {
-    deleteProducto(id); //Elimina el producto del servicio
-    const update = getProductos();// Vuelve a obtener la lista actualizada
-    setProductos(update);// Actualiza el estado con la nueva lista
+    deleteProducto(id);
+    setProductos(getProductos());
   };
 
   return (
     <Container className="mt-4">
       <h2 className="text-center mb-4">Lista de Productos</h2>
 
-      {productos.length > 0 ? (
+      {productos.length ? (
         <Row>
-          {productos.map((producto) => (
-            <Col md={6} lg={4} className="mb-4" key={producto.id}>
-              <ProductoItem producto={producto} onDelete={handleDeleteProducto} />
+          {productos.map((p) => (
+            <Col md={6} lg={4} key={p.id} className="mb-4">
+              <ProductoItem
+                producto={p}
+                onDelete={handleDeleteProducto}
+                onToggleFavorito={toggleFavorito}
+              />
             </Col>
           ))}
         </Row>
@@ -40,4 +38,7 @@ export const ProductoList = () => {
       )}
     </Container>
   );
+
 };
+
+export default ProductoList;

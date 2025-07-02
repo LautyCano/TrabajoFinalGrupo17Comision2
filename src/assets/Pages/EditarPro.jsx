@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getProductos, initializeProducto, updatedProducto } from "../Services/ServicesPro";
+import { getProductos, deleteProducto } from "../services/ServicesPro";
 import ProductoForm from "../Components/Form";
 
 export default function EditarProducto() {
@@ -9,16 +9,16 @@ export default function EditarProducto() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    initializeProducto();
+    
     const productos = getProductos();
     const foundProducto = productos.find((p) => p.id.toString() === id);
     setProducto(foundProducto || null);
   }, [id]);
 
-  const handleUpdate = (updatedProductData) => { // Renombrar para claridad
-  updatedProducto({ ...updatedProductData, id: id }); // Asegurar que el ID se pasa correctamente
-  navigate(`/productos/${id}`);
-};
+  const handleUpdate = (updatedProductData) => {
+    deleteProducto(id);
+    navigate(`/productos/${id}`);
+  };
 
   if (!producto) {
     return <p style={{ color: "red" }}> Error: Producto no encontrado.</p>;
