@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./assets/Pages/Home"; 
-import { ProductoList } from "./assets/Components/List"; 
+import { ProductoList } from "./assets/Components/List";
 import ProductoForm from "./assets/Components/Form";
 import VerProducto from "./assets/Pages/DetallesPro";
 import Favoritos from './assets/Pages/Favoritos';

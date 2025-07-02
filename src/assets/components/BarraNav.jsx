@@ -11,15 +11,16 @@ import '../css/BarraNav.css';
 
 const BarraNav = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="barra-personalizada">
+    <Navbar variant="dark" expand="lg" sticky="top" className="barra-personalizada">
       <Container fluid className="px-4">
         <Navbar.Brand as={Link} to="/" className="logo-nav">
           <img
-            src="/logominas.jpeg"
-            alt="Logo Escuela de Minas"
+            src="/LogoGrande.png"
+            alt="Logo de VisualStore"
             className="logo-img"
+            style={{ maxWidth: '130px', maxHeight: '100px' }}
           />
-          Escuela de Minas
+          
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbar-nav" className="boton-toggle" />
