@@ -9,7 +9,8 @@ export const getProductos = () => {
 export const saveProducto = (newProducto) => {
   const productos = getProductos(); // Obtener la lista actual de productos
 
-  const productoWithId = { ...newProducto, id: Date.now().toString() };
+  // Aseguramos que cada producto tenga el campo favorito en false por defecto
+  const productoWithId = { ...newProducto, id: Date.now().toString(), favorito: false };
   productos.push(productoWithId); // Añadir el nuevo producto a la lista
   localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(productos));
 };

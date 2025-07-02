@@ -2,7 +2,7 @@
 // - Debe mostrar el nombre, precio, descripcion, categoria, imagen y todo lo que se necesite
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductos, initializeProducto } from "../Services/ServicesPro";
+import { getProductos, initializeProducto } from "../services/ServicesPro";
 import { Card } from "react-bootstrap";
 
 export default function VerProducto() {
