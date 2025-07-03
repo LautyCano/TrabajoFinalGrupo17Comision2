@@ -1,45 +1,28 @@
 .barra-personalizada {
-    background-color: #1A1F26 !important;
-}
-/*
-.barra-personalizada {
-  background-color: #121212;
-  height: 80px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-  border-bottom: 1px solid #292929;
-  font-size: 1.05rem;
-  z-index: 1000;
+  background-color: #0d1117 !important;
+  height: 120px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 .logo-img {
-  height: 48px;
-  margin-right: 12px;
-  border-radius: 6px;
+  height: 90px;
   object-fit: contain;
-}
 
-.logo-nav {
-  font-weight: 600;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  color: #03a9f4 !important;
-  text-decoration: none;
 }
 
 .nav-enlaces .nav-link {
-  margin-left: 20px;
-  color: #dddddd !important;
-  transition: color 0.3s ease, transform 0.2s ease;
+  color: #ffffff !important;
   font-weight: 500;
+  margin-left: 20px;
+  transition: all 0.3s ease;
 }
 
 .nav-enlaces .nav-link:hover {
-  color: #03a9f4 !important;
+  color: #58a6ff !important;
   transform: translateY(-2px);
 }
 
 .boton-toggle {
-  background-color: #1f1f1f;
+  background-color: #21262d;
   border: none;
 }
