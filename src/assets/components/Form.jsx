@@ -11,7 +11,7 @@
 
 import React from 'react';
 import { useState, useEffect } from "react";
-import { saveProducto, updatedProducto, getProductos } from "../services/ServicesPro";
+import { saveProducto, updatedProducto, getProductos } from "../Services/ServicesPro";
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
 
 const ProductoForm = ({ producto, onSubmit, productos, setProductos }) => {
@@ -37,10 +37,6 @@ const ProductoForm = ({ producto, onSubmit, productos, setProductos }) => {
     e.preventDefault();
 
     // Validaciones
-    if (!/^[a-zA-Z\s]+$/.test(nombre)) {
-      alert("El nombre no puede contener números ni caracteres especiales.");
-      return;
-    }
     if (precio < 0) {
       alert("El precio no puede ser negativo.");
       return;
@@ -57,7 +53,8 @@ const ProductoForm = ({ producto, onSubmit, productos, setProductos }) => {
       descripcion,
       categoria,
       stock,
-      imagen
+      imagen,
+      favorito: producto ? producto.favorito : false, // Mantener el estado de favorito si se edita
     };
 
     if (producto) {

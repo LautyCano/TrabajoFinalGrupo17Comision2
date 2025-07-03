@@ -2,7 +2,7 @@
 // - Cada producto debe mostrar su imagen, nombre, precio, descripcion, categoria.
 import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { getProductos, deleteProducto } from "../services/ServicesPro"; 
+import { getProductos, deleteProducto } from "../Services/ServicesPro"; 
 import ProductoItem from "./Items";   // ruta relativa correcta
 
 export const ProductoList = ({ productos, setProductos, toggleFavorito }) => {

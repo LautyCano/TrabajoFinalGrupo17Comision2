@@ -22,9 +22,17 @@ const ProductoItem = ({ producto, onDelete, onToggleFavorito }) => {
   return (
     <Card className="m-3 shadow" style={{ width: "18rem" }}>
       <Card.Body>
+        <Card.Img
+          variant="top"
+          src={producto.imagen}
+          alt={producto.nombre}
+          style={{ height: "200px", objectFit: "cover" }}
+        />
         <Card.Title>{producto.nombre}</Card.Title>
-        <Card.Text>{producto.descripcion}</Card.Text>
-        <Card.Text><strong>Precio:</strong> ${producto.precio}</Card.Text>
+        <Card.Text style={{ color: 'black' }}><strong>Descripción:</strong> {producto.descripcion}</Card.Text>
+        <Card.Text style={{ color: 'black' }}><strong>Categoría:</strong> {producto.categoria}</Card.Text>
+        <Card.Text style={{ color: 'black' }}><strong>Stock:</strong> {producto.stock}</Card.Text>
+        <Card.Text style={{ color: 'black' }}><strong>Precio:</strong> ${producto.precio}</Card.Text>
 
         <div className="d-flex justify-content-between mb-2">
           <Button variant="info"    onClick={handleView}>Ver</Button>
