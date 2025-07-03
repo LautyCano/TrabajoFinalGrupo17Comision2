@@ -1,9 +1,17 @@
+
+import { Card, Row, Col, Container, Button } from "react-bootstrap";
+
+export default function Favoritos({ productos, toggleFavorito }) {
+  // Filtrar productos que están marcados como favoritos
+  const favoritos = productos.filter((p) => p.favorito);
+
 // Componentes de React para mostrar productos favoritos
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
 
 export default function Favoritos({ productos = [], toggleFavorito }) {
   // Filtrar productos que están marcados como favoritos
   const favoritos = Array.isArray(productos) ? productos.filter((p) => p.favorito) : [];
+
 
   return (
     <Container className="py-5">
@@ -14,6 +22,15 @@ export default function Favoritos({ productos = [], toggleFavorito }) {
       ) : (
         <Row>
           {favoritos.map((p) => (
+            <Col md={6} lg={4} key={p.id} className="mb-4">
+              <Card className="h-100 bg-dark text-light border-secondary shadow-sm">
+                <Card.Img
+                  variant="top"
+                  src={p.imagen}
+                  alt={p.nombre}
+                  style={{ height: "200px", objectFit: "cover" }}
+                />
+
             <Col md={6} lg={4} key={p.id} className="mb-4" >
               <Card className="h-100 bg-dark text-light border-secondary shadow-sm" >
                 {p.imagen && (
@@ -24,6 +41,7 @@ export default function Favoritos({ productos = [], toggleFavorito }) {
                     style={{ height: "200px", objectFit: "cover" }}
                   />
                 )}
+
                 <Card.Body>
                   <Card.Title>{p.nombre}</Card.Title>
                   <Card.Text>{p.descripcion}</Card.Text>
@@ -32,9 +50,14 @@ export default function Favoritos({ productos = [], toggleFavorito }) {
                   </Card.Text>
                   <Button
 
+                    variant={p.favorito ? "success" : "secondary"}
+                    className="w-100"
+
+
 
                     variant={p.favorito ? "success" : "secondary"}
                     className="w-100"
+
 
                     onClick={() => toggleFavorito(p.id)}
                   >
@@ -49,4 +72,3 @@ export default function Favoritos({ productos = [], toggleFavorito }) {
     </Container>
   );
 }
-
