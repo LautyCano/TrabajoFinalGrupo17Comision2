@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getProductos, deleteProducto } from "../services/ServicesPro";
+import { getProductos, updatedProducto } from "../Services/ServicesPro";
 import ProductoForm from "../Components/Form";
+
 
 export default function EditarProducto() {
   const { id } = useParams();
@@ -16,9 +17,9 @@ export default function EditarProducto() {
   }, [id]);
 
   const handleUpdate = (updatedProductData) => {
-    deleteProducto(id);
-    navigate(`/productos/${id}`);
-  };
+  updatedProducto(updatedProductData); // actualizá el producto
+  navigate(`/productos/${updatedProductData.id}`); // redirigí al detalle
+};
 
   if (!producto) {
     return <p style={{ color: "red" }}> Error: Producto no encontrado.</p>;

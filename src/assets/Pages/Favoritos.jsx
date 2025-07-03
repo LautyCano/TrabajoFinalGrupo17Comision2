@@ -3,7 +3,7 @@ import { Card, Row, Col, Container, Button } from "react-bootstrap";
 
 export default function Favoritos({ productos, toggleFavorito }) {
   // Filtrar los productos favoritos aquí
-  const favoritos = productos.filter((p) => p.favorito);
+  const favoritos = productos.filter((p) => p.isFavorite);
 
   return (
     <Container className="mt-4">
@@ -23,11 +23,11 @@ export default function Favoritos({ productos, toggleFavorito }) {
                     <strong>Precio:</strong> ${p.precio}
                   </Card.Text>
                   <Button
-                    variant={p.favorito ? "success" : "secondary"}
+                    variant={p.isFavorite ? "success" : "secondary"}
                     className="w-100"
                     onClick={() => toggleFavorito(p.id)}
                   >
-                    {p.favorito ? "★ En favoritos" : "☆ Añadir a favoritos"}
+                    {p.isFavorite ? "★ En favoritos" : "☆ Añadir a favoritos"}
                   </Button>
                 </Card.Body>
               </Card>

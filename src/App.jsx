@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import BarraNav from "./assets/Components/BarraNav";
 import AppRoutes from "./Routes";
-import { getProductos, initializeProducto } from "./assets/services/ServicesPro";
+import { getProductos, initializeProducto } from "./assets/Services/ServicesPro";
 
 function App() {
   const [productos, setProductos] = useState(() => getProductos());
