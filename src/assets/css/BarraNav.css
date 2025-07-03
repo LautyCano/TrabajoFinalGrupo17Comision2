@@ -1,0 +1,28 @@
+.barra-personalizada {
+  background-color: #0d1117 !important;
+  height: 120px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.logo-img {
+  height: 90px;
+  object-fit: contain;
+
+}
+
+.nav-enlaces .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  margin-left: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-enlaces .nav-link:hover {
+  color: #58a6ff !important;
+  transform: translateY(-2px);
+}
+
+.boton-toggle {
+  background-color: #21262d;
+  border: none;
+}
