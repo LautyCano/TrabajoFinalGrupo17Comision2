@@ -1,17 +1,8 @@
-MuroLautaro
-
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
 
 export default function Favoritos({ productos, toggleFavorito }) {
-  // Filtrar productos favoritos
-
-  const favoritos = productos.filter((p) => p.isFavorite);
-
-import { Card, Row, Col, Container, Button } from "react-bootstrap";
-
-export default function Favoritos({ productos, toggleFavorito }) {
+  // Filtrar productos que están marcados como favoritos
   const favoritos = productos.filter((p) => p.favorito);
- main
 
   return (
     <Container className="py-5">
@@ -23,11 +14,7 @@ export default function Favoritos({ productos, toggleFavorito }) {
         <Row>
           {favoritos.map((p) => (
             <Col md={6} lg={4} key={p.id} className="mb-4">
-MuroLautaro
               <Card className="h-100 bg-dark text-light border-secondary shadow-sm">
-
-              <Card className="shadow">
-main
                 <Card.Img
                   variant="top"
                   src={p.imagen}
@@ -41,13 +28,8 @@ main
                     <strong>Precio:</strong> ${p.precio}
                   </Card.Text>
                   <Button
- MuroLautaro
-                    variant={p.isFavorite ? "success" : "secondary"}
-                    className="w-100 favorito-btn"
-
                     variant={p.favorito ? "success" : "secondary"}
                     className="w-100"
-main
                     onClick={() => toggleFavorito(p.id)}
                   >
                     {p.favorito ? "★ En favoritos" : "☆ Añadir a favoritos"}
@@ -61,4 +43,3 @@ main
     </Container>
   );
 }
-
