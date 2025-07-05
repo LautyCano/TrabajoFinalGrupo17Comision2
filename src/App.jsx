@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import BarraNav from "./assets/components/BarraNav";
+import BarraNav from "./assets/Components/BarraNav";
 import AppRoutes from "./Routes";
-import { getProductos, initializeProducto } from "./assets/services/ServicesPro";
+import { getProductos, initializeProducto } from "./assets/Services/ServicesPro";
+import PapeleraAdmin from "./assets/Components/Papelera";
 
 function App() {
   // Estado para el tipo de usuario
@@ -49,8 +50,11 @@ function App() {
           productos={productos}
           setProductos={setProductos}
           toggleFavorito={toggleFavorito}
+          userType={userType}
         />
       </div>
+      <PapeleraAdmin userType={userType} setProductos={setProductos} />
+
     </BrowserRouter>
   );
 }

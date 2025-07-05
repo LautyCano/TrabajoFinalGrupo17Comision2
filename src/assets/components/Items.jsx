@@ -7,7 +7,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 
-const ProductoItem = ({ producto, onDelete, onToggleFavorito }) => {
+const ProductoItem = ({ producto, onDelete, onToggleFavorito, userType }) => {
   const navigate = useNavigate();
 
   /* --- handlers --- */
@@ -16,7 +16,13 @@ const ProductoItem = ({ producto, onDelete, onToggleFavorito }) => {
   const handleDelete    = () => {
     if (window.confirm(`¿Eliminar “${producto.nombre}”?`)) onDelete(producto.id);
   };
-  const handleFavorito  = () => onToggleFavorito(producto.id);
+  const handleFavorito = () => {
+    if (userType === 'guest') {
+      alert('Debés iniciar sesión para agregar favoritos.');
+      return;
+    }
+    onToggleFavorito(producto.id);
+  };
 
   /* --- UI --- */
   return (
@@ -35,9 +41,14 @@ const ProductoItem = ({ producto, onDelete, onToggleFavorito }) => {
         <Card.Text style={{ color: 'black' }}><strong>Precio:</strong> ${producto.precio}</Card.Text>
 
         <div className="d-flex justify-content-between mb-2">
-          <Button variant="info"    onClick={handleView}>Ver</Button>
-          <Button variant="warning" onClick={handleEdit}>Editar</Button>
-          <Button variant="danger"  onClick={handleDelete}>Eliminar</Button>
+          <Button variant="info" onClick={handleView}>Ver</Button>
+
+          {userType === 'admin' && (
+            <>
+              <Button variant="warning" onClick={handleEdit}>Editar</Button>
+              <Button variant="danger" onClick={handleDelete}>Eliminar</Button>
+            </>
+          )}
         </div>
 
         {/* Botón Favorito */}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Navbar,
   Nav,
@@ -17,22 +17,18 @@ const BarraNav = ({ userType, login, logout }) => {
   const [contrasena, setContrasena] = useState('');
   const [busqueda, setBusqueda] = useState('');
 
+  const navigate = useNavigate();
+
  const handleBuscar = (e) => {
   e.preventDefault();
 
-  const productos = JSON.parse(localStorage.getItem('productos_data')) || [];
+  // Evita enviar búsquedas vacías
+  if (!busqueda.trim()) return;
 
-  const resultados = productos.filter((producto) =>
-    producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  // Redirige a la vista de resultados
+  navigate(`/buscar/${busqueda.trim()}`);
 
-  if (resultados.length > 0) {
-    console.log("Resultados encontrados:", resultados);
-    alert(`Se encontraron ${resultados.length} producto(s) que coinciden con "${busqueda}". Mirá la consola para verlos.`);
-  } else {
-    alert("No se encontraron productos con ese nombre.");
-  }
-
+  // Limpia el input de búsqueda
   setBusqueda('');
 };
 
@@ -105,6 +101,9 @@ const BarraNav = ({ userType, login, logout }) => {
             {userType !== 'guest' && (
               <>
                 <NavDropdown title="Productos" id="productos-dropdown">
+                  <NavDropdown.Item as={Link} to="/">
+                    Inicio
+                  </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/categorias/Pantallas">
                     Pantallas
                   </NavDropdown.Item>

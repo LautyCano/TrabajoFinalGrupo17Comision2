@@ -33,18 +33,23 @@ export const initializeProducto = () => {
       { id: '8', nombre: "Mother ASUS ROG STRIX", precio: 580950, descripcion: "Z890-A GAMING WIFI LGA1851", categoria: "Componentes-PC", stock: 56, imagen: "/asusrogz890.jpg", favorito: false },
       { id: '9', nombre: "Placa de Video Asrock", precio: 1043217, descripcion: "Radeon RX 9070 XT 16GB GDDR6 Steel Legend Dark", categoria: "Componentes-PC", stock: 31, imagen: "/radeon9070.jpg", favorito: false },
       { id: '10', nombre: "Auriculares Logitech G335", precio: 108990, descripcion: "White PC/XBOX/PS", categoria: "Componentes-PC", stock: 14, imagen: "/Auris.jpg", favorito: false },
-      { id: '11', nombre: "Notebook HP 15", precio: 551860, descripcion: "FC0037WM 15.6 pulgadas R5-7520U 8GB SSD 256GB FHD Win11", categoria: "Componentes-PC", stock: 45, imagen: "/notebook.jpg", favorito: false },
+      { id: '11', nombre: "Notebook HP 15", precio: 551860, descripcion: "FC0037WM 15.6 pulgadas R5-7520U 8GB SSD 256GB FHD Win11", categoria: "Notebooks", stock: 45, imagen: "/notebook.jpg", favorito: false },
     ];
     localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(initialProductos));
     console.log('Productos precargados inicializados.');
  }
 };
 
-// Eliminar producto
+// Eliminar producto(moverlo a una papelera de reciclaje)
 export const deleteProducto = (id) => {
   const productos = getProductos();
-  const updatedProductos = productos.filter((producto) => producto.id !== id);
-  localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(updatedProductos));
+  const eliminados = JSON.parse(localStorage.getItem('productos_eliminados')) || [];
+
+  const productoEliminado = productos.find((p) => p.id === id);
+  const productosFiltrados = productos.filter((p) => p.id !== id);
+
+  localStorage.setItem('productos_data', JSON.stringify(productosFiltrados));
+  localStorage.setItem('productos_eliminados', JSON.stringify([...eliminados, productoEliminado]));
 };
 
 // Actualizar producto
@@ -58,15 +63,10 @@ export const updatedProducto = (updatedProducto) => {
 };
 
 // Marcar/desmarcar favorito
-export const toggleFavorito = (productoId) => {
-  let products = getProductos();
-  const index = products.findIndex(p => p.id === productoId); 
-
-  if (index !== -1) {
-    products[index].favorito = !products[index].favorito;
-    localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(products));
-    console.log(`Producto "${products[index].nombre}" ahora es favorito: ${products[index].favorito}`);
-  } else {
-    console.error("Producto no encontrado para toggle favorito:", productoId);
-  }
+export const toggleFavorito = (id) => {
+  let productos = getProductos().map(p =>
+    p.id === id ? { ...p, favorito: !p.favorito } : p
+  );
+  localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(productos));
+  return productos;
 };
