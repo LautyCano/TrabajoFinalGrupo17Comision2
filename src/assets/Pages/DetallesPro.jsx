@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getProductos, toggleFavorito } from '../services/ServicesPro';
+import { getProductos, toggleFavorito } from '../Services/ServicesPro';
 import { Card, Button } from 'react-bootstrap';
 
 export default function DetallesPro() {
@@ -25,7 +25,7 @@ export default function DetallesPro() {
     }
   };
 
-  const goToFavoritos = () => navigate('/productos/favoritos');
+  const goToFavoritos = () => navigate('/favoritos');
   const goBackToList = () => navigate('/productos');
 
   if (!producto) {
@@ -62,11 +62,11 @@ export default function DetallesPro() {
 
           <div className="d-flex justify-content-between mt-3">
             <Button
-              variant={producto.isFavorite ? "success" : "outline-light"}
+              variant={producto.favorito ? "success" : "outline-light"}
               onClick={handleToggleFavorite}
               className="flex-fill me-2"
-            >
-              {producto.isFavorite ? "★ En Favoritos" : "☆ Añadir a Favoritos"}
+              >
+              {producto.favorito ? "★ En Favoritos" : "☆ Añadir a Favoritos"}
             </Button>
             <Button variant="info" onClick={goToFavoritos}>
               Ver Favoritos
