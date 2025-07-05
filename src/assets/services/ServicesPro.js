@@ -37,7 +37,7 @@ export const initializeProducto = () => {
     ];
     localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(initialProductos));
     console.log('Productos precargados inicializados.');
-  }
+ }
 };
 
 // Eliminar producto

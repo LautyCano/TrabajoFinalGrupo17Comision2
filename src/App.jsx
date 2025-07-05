@@ -1,17 +1,23 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import BarraNav from "./assets/Components/BarraNav";
+import BarraNav from "./assets/components/BarraNav";
 import AppRoutes from "./Routes";
-import { getProductos, initializeProducto } from "./assets/Services/ServicesPro";
+import { getProductos, initializeProducto } from "./assets/services/ServicesPro";
 
 function App() {
+  // Estado para el tipo de usuario
+  const [userType, setUserType] = useState("guest");
+
+  // Estado de productos
   const [productos, setProductos] = useState(() => getProductos());
 
+  // Inicialización de productos
   useEffect(() => {
     initializeProducto();
-    setProductos(getProductos()); // actualiza el estado después de inicializar
+    setProductos(getProductos());
   }, []);
 
+  // Función para alternar favoritos
   const toggleFavorito = (id) => {
     setProductos((prev) => {
       const nuevosProductos = prev.map((p) =>
@@ -22,9 +28,22 @@ function App() {
     });
   };
 
+  // Funciones de login/logout
+  const login = (email, password) => {
+    if (email === "lautaromatias@gmail.com" && password === "matykano123") {
+      setUserType("admin");
+    } else {
+      setUserType("user");
+    }
+  };
+
+  const logout = () => {
+    setUserType("guest");
+  };
+
   return (
     <BrowserRouter>
-      <BarraNav />
+      <BarraNav userType={userType} login={login} logout={logout} />
       <div style={{ paddingTop: "70px" }}>
         <AppRoutes
           productos={productos}
