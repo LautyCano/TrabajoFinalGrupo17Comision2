@@ -11,13 +11,13 @@ const ProductoItem = ({ producto, onDelete, onToggleFavorito, userType }) => {
   const navigate = useNavigate();
 
   /* --- handlers --- */
-  const handleView      = () => navigate(`/productos/${producto.id}`);
-  const handleEdit      = () => navigate(`/productos/${producto.id}/editar`);
+  const handleView      = () => navigate(`/productos/${producto.id}`); // Redirige a la página de detalles del producto
+  const handleEdit      = () => navigate(`/productos/${producto.id}/editar`); // Redirige a la página de edición del producto
   const handleDelete    = () => {
     if (window.confirm(`¿Eliminar “${producto.nombre}”?`)) onDelete(producto.id);
   };
-  const handleFavorito = () => {
-    if (userType === 'guest') {
+  const handleFavorito = () => { // Maneja el cambio de favorito
+    if (userType === 'guest') { // Si el usuario es invitado, muestra un mensaje
       alert('Debés iniciar sesión para agregar favoritos.');
       return;
     }

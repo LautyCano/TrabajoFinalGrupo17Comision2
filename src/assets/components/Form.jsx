@@ -22,7 +22,7 @@ const ProductoForm = ({ producto, onSubmit, productos, setProductos }) => {
   const [stock, setStock] = useState("");
   const [imagen, setImagen] = useState("");
 
-  useEffect(() => {
+  useEffect(() => { // Si se está editando un producto, carga sus datos en el formulario
     if (producto) {
       setNombre(producto.nombre || "");
       setPrecio(producto.precio || "");
@@ -33,7 +33,7 @@ const ProductoForm = ({ producto, onSubmit, productos, setProductos }) => {
     }
   }, [producto]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { // Maneja el envío del formulario
     e.preventDefault();
 
     // Validaciones
@@ -47,7 +47,7 @@ const ProductoForm = ({ producto, onSubmit, productos, setProductos }) => {
     }
 
     const productoData = {
-      id: producto?.id || Date.now().toString(),
+      id: producto?.id || Date.now().toString(), // Genera un ID único si es un nuevo producto
       nombre,
       precio,
       descripcion,
@@ -65,7 +65,7 @@ const ProductoForm = ({ producto, onSubmit, productos, setProductos }) => {
       if (setProductos) setProductos(getProductos());
     }
 
-    if (onSubmit) {
+    if (onSubmit) { // Llama a la función onSubmit si se proporciona
       onSubmit(productoData);
     }
 

@@ -14,19 +14,19 @@ export default function DetallesPro() {
     setProducto(foundProducto);
   };
 
-  useEffect(() => {
+  useEffect(() => { // Carga el producto al montar el componente
     loadProducto();
   }, [id]);
 
-  const handleToggleFavorite = () => {
+  const handleToggleFavorite = () => { // Maneja el cambio de favorito
     if (producto) {
       toggleFavorito(producto.id);
       loadProducto();
     }
   };
 
-  const goToFavoritos = () => navigate('/favoritos');
-  const goBackToList = () => navigate('/productos');
+  const goToFavoritos = () => navigate('/favoritos'); // Redirige a la página de favoritos
+  const goBackToList = () => navigate('/productos'); // Redirige a la lista de productos
 
   if (!producto) {
     return <p className="text-danger text-center mt-4">Producto no encontrado o cargando...</p>;

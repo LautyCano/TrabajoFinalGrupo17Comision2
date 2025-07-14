@@ -2,20 +2,20 @@ const PRODUCTO_STORAGE_KEY = 'productos_data';
 
 // Obtener productos desde localStorage
 export const getProductos = () => {
-  const productos = localStorage.getItem(PRODUCTO_STORAGE_KEY);
-  return productos ? JSON.parse(productos) : [];
+  const productos = localStorage.getItem(PRODUCTO_STORAGE_KEY); // Obtiene los productos del localStorage
+  return productos ? JSON.parse(productos) : []; // Si no hay productos, devuelve un array vacío
 };
 
 // Guardar nuevo producto
-export const saveProducto = (newProducto) => {
-  const productos = getProductos();
-  const productoWithId = {
+export const saveProducto = (newProducto) => { 
+  const productos = getProductos(); // Obtiene los productos actuales
+  const productoWithId = { // Asigna un ID único al nuevo producto
     ...newProducto,
-    id: Date.now().toString(),
+    id: Date.now().toString(), // Genera un ID único basado en la fecha actual
     favorito: false, 
   };
-  productos.push(productoWithId);
-  localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(productos));
+  productos.push(productoWithId); // Agrega el nuevo producto al array
+  localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(productos)); // Guarda el array actualizado en el localStorage
 };
 
 // Inicializar productos precargados si no hay ninguno
@@ -42,11 +42,11 @@ export const initializeProducto = () => {
 
 // Eliminar producto(moverlo a una papelera de reciclaje)
 export const deleteProducto = (id) => {
-  const productos = getProductos();
-  const eliminados = JSON.parse(localStorage.getItem('productos_eliminados')) || [];
+  const productos = getProductos(); 
+  const eliminados = JSON.parse(localStorage.getItem('productos_eliminados')) || []; // Obtiene los productos eliminados del localStorage
 
-  const productoEliminado = productos.find((p) => p.id === id);
-  const productosFiltrados = productos.filter((p) => p.id !== id);
+  const productoEliminado = productos.find((p) => p.id === id); // Encuentra el producto a eliminar
+  const productosFiltrados = productos.filter((p) => p.id !== id); // Filtra los productos para eliminar el seleccionado
 
   localStorage.setItem('productos_data', JSON.stringify(productosFiltrados));
   localStorage.setItem('productos_eliminados', JSON.stringify([...eliminados, productoEliminado]));
@@ -55,9 +55,9 @@ export const deleteProducto = (id) => {
 // Actualizar producto
 export const updatedProducto = (updatedProducto) => {
   const productos = getProductos();
-  const index = productos.findIndex((p) => p.id === updatedProducto.id);
-  if (index !== -1) {
-    productos[index] = updatedProducto;
+  const index = productos.findIndex((p) => p.id === updatedProducto.id); // Encuentra el índice del producto a actualizar
+  if (index !== -1) { 
+    productos[index] = updatedProducto; // Actualiza el producto en el array
     localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(productos));
   }
 };
@@ -65,7 +65,7 @@ export const updatedProducto = (updatedProducto) => {
 // Marcar/desmarcar favorito
 export const toggleFavorito = (id) => {
   let productos = getProductos().map(p =>
-    p.id === id ? { ...p, favorito: !p.favorito } : p
+    p.id === id ? { ...p, favorito: !p.favorito } : p // Cambia el estado de favorito del producto
   );
   localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(productos));
   return productos;

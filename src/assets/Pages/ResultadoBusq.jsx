@@ -6,8 +6,8 @@ import ProductoItem from "../Components/Items";
 const ResultadosBusqueda = ({ productos, toggleFavorito }) => {
   const { termino } = useParams();
 
-  const resultados = productos.filter((p) =>
-    p.nombre.toLowerCase().includes(termino.toLowerCase())
+  const resultados = productos.filter((p) => // Filtra los productos que coinciden con el término de búsqueda
+    p.nombre.toLowerCase().includes(termino.toLowerCase()) // p es el producto actual, tolowerCase() asegura que la búsqueda no sea sensible a mayúsculas
   );
 
   return (
