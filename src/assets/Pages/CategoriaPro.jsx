@@ -6,7 +6,7 @@ import ProductoItem from "../Components/Items";
 const CategoriaProducto = ({ productos, toggleFavorito }) => {
   const { categoria } = useParams();
 
-  const filtrados = productos.filter(
+  const filtrados = productos.filter( // Filtra los productos por categoría
     (p) => p.categoria.toLowerCase() === categoria.toLowerCase()
   );
 

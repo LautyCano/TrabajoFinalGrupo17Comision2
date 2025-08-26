@@ -8,7 +8,7 @@ const Home = ({ productos, setProductos, toggleFavorito }) => {
 
   return (
     <Container className="py-5">
-      <h1 className="display-5 fw-bold text-center text-info mb-2">
+      <h1 className="display-5 fw-bold text-center text-info mb-2"> {/* H1  genera el titulo */}
         Bienvenido a VisualStore
       </h1>
       <p className="text-center lead text-light mb-5">
@@ -23,13 +23,14 @@ const Home = ({ productos, setProductos, toggleFavorito }) => {
           <Carousel.Item key={p.id}>
             <div className="d-flex justify-content-center">
               <div className="bg-dark p-3 rounded" style={{ width: '300px' }}>
-                <img
+                {/* Imágenes que van a aparecer en el carrusel */}
+                <img 
                   src={p.imagen}
                   alt={p.nombre}
                   className="img-fluid rounded mb-3"
                   style={{ height: '200px', objectFit: 'cover' }}
                 />
-                <h5 className="text-white">{p.nombre}</h5>
+                <h5 className="text-white">{p.nombre}</h5> {/* nombre de los productos */}
                 <p className="text-light mb-0">{p.descripcion}</p>
                 <small className="text-info d-block mt-2"> ${p.precio}</small>
               </div>
@@ -38,7 +39,8 @@ const Home = ({ productos, setProductos, toggleFavorito }) => {
         ))}
       </Carousel>
 
-      <h2 className="text-center text-light mb-4"> Lista completa de productos</h2>
+      {/* Lista de Productos */}
+      <h2 className="text-center text-light mb-4"> Lista completa de productos</h2> 
       <ProductoList
         productos={productos}
         setProductos={setProductos}

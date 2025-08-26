@@ -15,13 +15,13 @@ export const ProductoList = ({ productos, setProductos, toggleFavorito, userType
 
   return (
     <Container className="mt-4">
-      {productos.length ? (
+      {productos.length ? ( // Si hay productos, los muestra en una grilla
         <Row>
           {productos.map((p) => (
             <Col md={6} lg={4} key={p.id} className="mb-4">
               <ProductoItem
-                producto={p}
-                onDelete={handleDeleteProducto}
+                producto={p} // Pasa el producto como prop
+                onDelete={handleDeleteProducto} // Función para eliminar producto
                 onToggleFavorito={toggleFavorito}
                 userType={userType} // Pasar el tipo de usuario
               />
