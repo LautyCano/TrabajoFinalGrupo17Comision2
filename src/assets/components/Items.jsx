@@ -14,7 +14,7 @@ const ProductoItem = ({ producto, onDelete, onToggleFavorito, userType }) => {
   const handleView      = () => navigate(`/productos/${producto.id}`); // Redirige a la página de detalles del producto
   const handleEdit      = () => navigate(`/productos/${producto.id}/editar`); // Redirige a la página de edición del producto
   const handleDelete    = () => {
-    if (window.confirm(`¿Eliminar “${producto.nombre}”?`)) onDelete(producto.id);
+    if (window.confirm(`¿Eliminar “${producto.nombre}”?`)) onDelete(producto.id); // Confirma y elimina el producto
   };
   const handleFavorito = () => { // Maneja el cambio de favorito
     if (userType === 'guest') { // Si el usuario es invitado, muestra un mensaje

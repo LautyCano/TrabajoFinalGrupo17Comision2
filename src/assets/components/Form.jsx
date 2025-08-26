@@ -58,11 +58,11 @@ const ProductoForm = ({ producto, onSubmit, productos, setProductos }) => {
     };
 
     if (producto) {
-      updatedProducto(productoData);
+      updatedProducto(productoData); // Actualiza el producto existente
     } else {
       saveProducto(productoData);
       // Actualizar el estado global después de guardar
-      if (setProductos) setProductos(getProductos());
+      if (setProductos) setProductos(getProductos()); //
     }
 
     if (onSubmit) { // Llama a la función onSubmit si se proporciona

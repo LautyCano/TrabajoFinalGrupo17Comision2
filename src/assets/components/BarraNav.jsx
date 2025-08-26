@@ -12,7 +12,7 @@ const BarraNav = ({ userType, login, logout }) => {
 
   const navigate = useNavigate();
 
- const handleBuscar = (e) => {
+ const handleBuscar = (e) => { // Maneja la búsqueda de productos
   e.preventDefault();
 
   // Evita enviar búsquedas vacías
@@ -36,9 +36,9 @@ const BarraNav = ({ userType, login, logout }) => {
             <input
               type="email"
               placeholder="example@gmail.com"
-              value={correo}
-              onChange={(e) => setCorreo(e.target.value)}
-              className="form-control my-2"
+              value={correo} // Valor del input de correo
+              onChange={(e) => setCorreo(e.target.value)} // Actualiza el estado del correo
+              className="form-control my-2" // Clase de Bootstrap para estilos
             />
             <input
               type="password"

@@ -54,7 +54,7 @@ export const deleteProducto = (id) => {
 
 // Actualizar producto
 export const updatedProducto = (updatedProducto) => {
-  const productos = getProductos();
+  const productos = getProductos(); // Obtiene los productos actuales
   const index = productos.findIndex((p) => p.id === updatedProducto.id); // Encuentra el índice del producto a actualizar
   if (index !== -1) { 
     productos[index] = updatedProducto; // Actualiza el producto en el array
@@ -64,7 +64,7 @@ export const updatedProducto = (updatedProducto) => {
 
 // Marcar/desmarcar favorito
 export const toggleFavorito = (id) => {
-  let productos = getProductos().map(p =>
+  let productos = getProductos().map(p => // Recorre los productos
     p.id === id ? { ...p, favorito: !p.favorito } : p // Cambia el estado de favorito del producto
   );
   localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(productos));
