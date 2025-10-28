@@ -7,29 +7,48 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 
-const ProductoItem = ({ producto, onDelete, onToggleFavorito }) => {
+const ProductoItem = ({ producto, onDelete, onToggleFavorito, userType }) => {
   const navigate = useNavigate();
 
   /* --- handlers --- */
-  const handleView      = () => navigate(`/productos/${producto.id}`);
-  const handleEdit      = () => navigate(`/productos/${producto.id}/editar`);
+  const handleView      = () => navigate(`/productos/${producto.id}`); // Redirige a la página de detalles del producto
+  const handleEdit      = () => navigate(`/productos/${producto.id}/editar`); // Redirige a la página de edición del producto
   const handleDelete    = () => {
-    if (window.confirm(`¿Eliminar “${producto.nombre}”?`)) onDelete(producto.id);
+    if (window.confirm(`¿Eliminar “${producto.nombre}”?`)) onDelete(producto.id); // Confirma y elimina el producto
   };
-  const handleFavorito  = () => onToggleFavorito(producto.id);
+  const handleFavorito = () => { // Maneja el cambio de favorito
+    if (userType === 'guest') { // Si el usuario es invitado, muestra un mensaje
+      alert('Debés iniciar sesión para agregar favoritos.');
+      return;
+    }
+    onToggleFavorito(producto.id);
+  };
 
   /* --- UI --- */
   return (
     <Card className="m-3 shadow" style={{ width: "18rem" }}>
       <Card.Body>
+        <Card.Img
+          variant="top"
+          src={producto.imagen}
+          alt={producto.nombre}
+          style={{ height: "200px", objectFit: "cover" }}
+        />
         <Card.Title>{producto.nombre}</Card.Title>
-        <Card.Text>{producto.descripcion}</Card.Text>
-        <Card.Text><strong>Precio:</strong> ${producto.precio}</Card.Text>
+        <Card.Text style={{ color: 'black' }}><strong>Descripción:</strong> {producto.descripcion}</Card.Text>
+        <Card.Text style={{ color: 'black' }}><strong>Categoría:</strong> {producto.categoria}</Card.Text>
+        <Card.Text style={{ color: 'black' }}><strong>Stock:</strong> {producto.stock}</Card.Text>
+        <Card.Text style={{ color: 'black' }}><strong>Precio:</strong> ${producto.precio}</Card.Text>
 
         <div className="d-flex justify-content-between mb-2">
-          <Button variant="info"    onClick={handleView}>Ver</Button>
-          <Button variant="warning" onClick={handleEdit}>Editar</Button>
-          <Button variant="danger"  onClick={handleDelete}>Eliminar</Button>
+          <Button variant="info" onClick={handleView}>Ver</Button>
+
+          {userType === 'admin' && (
+            <>
+              <Button variant="warning" onClick={handleEdit}>Editar</Button>
+              <Button variant="danger" onClick={handleDelete}>Eliminar</Button>
+            </>
+          )}
         </div>
 
         {/* Botón Favorito */}

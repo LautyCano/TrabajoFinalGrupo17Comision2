@@ -1,39 +1,81 @@
-//Debe mostrar los detalles del producto seleccionados
-// - Debe mostrar el nombre, precio, descripcion, categoria, imagen y todo lo que se necesite
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getProductos, initializeProducto } from "../services/ServicesPro";
-import { Card } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getProductos, toggleFavorito } from '../Services/ServicesPro';
+import { Card, Button } from 'react-bootstrap';
 
-export default function VerProducto() {
+export default function DetallesPro() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [producto, setProducto] = useState(null);
 
-  useEffect(() => {
-    initializeProducto();
+  const loadProducto = () => {
     const productos = getProductos();
-    const foundProducto = productos.find((p) => p.id.toString() === id);
-    setProducto(foundProducto || null);
+    const foundProducto = productos.find(p => p.id === id);
+    setProducto(foundProducto);
+  };
+
+  useEffect(() => { // Carga el producto al montar el componente
+    loadProducto();
   }, [id]);
 
+  const handleToggleFavorite = () => { // Maneja el cambio de favorito
+    if (producto) {
+      toggleFavorito(producto.id);
+      loadProducto();
+    }
+  };
+
+  const goToFavoritos = () => navigate('/favoritos'); // Redirige a la página de favoritos
+  const goBackToList = () => navigate('/productos'); // Redirige a la lista de productos
+
   if (!producto) {
-    return <p className="text-danger text-center mt-4">⚠ Producto no encontrado.</p>;
+    return <p className="text-danger text-center mt-4">Producto no encontrado o cargando...</p>;
   }
 
   return (
-    <div className="d-flex justify-content-center mt-5">
-        <Card style={{ width: "24rem" }} className="shadow">
-          <Card.Body>
-            <Card.Title>{producto.nombre}</Card.Title>
-            <Card.Subtitle className="mb-3 text-muted">Precio: {producto.precio}</Card.Subtitle>
-            <Card.Text>
-              <strong>Descripción:</strong> {producto.descripcion} <br />
-              <strong>Categoría:</strong> {producto.categoria} <br />
-              <strong>Imagen:</strong> {producto.imagen} <br />
-              <strong>ID interno:</strong> {producto.id}
-            </Card.Text>
-          </Card.Body>
-        </Card>
+    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+      <Card className="shadow-lg p-3 bg-dark text-white" style={{ width: '26rem' }}>
+        <div className="d-flex justify-content-end">
+          <Button variant="outline-light" onClick={goBackToList} className="mb-2">
+            ← Volver
+          </Button>
+        </div>
+
+        {producto.imagen && (
+          <Card.Img
+            variant="top"
+            src={producto.imagen}
+            alt={producto.nombre}
+            style={{ height: "220px", objectFit: "cover", borderRadius: "10px" }}
+          />
+        )}
+
+        <Card.Body>
+          <Card.Title>{producto.nombre}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">Precio: ${producto.precio}</Card.Subtitle>
+
+          <Card.Text>
+            <strong>Descripción:</strong> {producto.descripcion} <br />
+            <strong>Categoría:</strong> {producto.categoria} <br />
+            <strong>Stock:</strong> {producto.stock}
+          </Card.Text>
+
+          <div className="d-flex justify-content-between mt-3">
+            <Button
+              variant={producto.favorito ? "success" : "outline-light"}
+              onClick={handleToggleFavorite}
+              className="flex-fill me-2"
+              >
+              {producto.favorito ? "★ En Favoritos" : "☆ Añadir a Favoritos"}
+            </Button>
+            <Button variant="info" onClick={goToFavoritos}>
+              Ver Favoritos
+            </Button>
+            
+          </div>
+
+        </Card.Body>
+      </Card>
     </div>
   );
 }

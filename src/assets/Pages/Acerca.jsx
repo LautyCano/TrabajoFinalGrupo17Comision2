@@ -12,34 +12,6 @@ const integrantes = [
     - Barra de navegación, rutas.
     - Solucionó errores de Bootstrap y React Router.`,
   },
-  {
-    nombre: "Lucas Fernandez",
-    imagen: "/Lucas.jpg",
-    descripcion: "Diseño y aplicación del estilo global de la página (variables CSS, temas generales, etc.).",
-  },
-  {
-    nombre: "Lautaro Muro",
-    imagen: "/muro.jpg",
-    descripcion: "Aplicación de estilos específicos para componentes de listas y botones reutilizables.",
-  },
-  {
-    nombre: "Marco Zumino",
-    imagen: "/Marcos.jpg",
-    descripcion: `Desarrollo de funcionalidades CRUD:
-    - Editar alumno
-    - Eliminar alumno
-    - Ver detalle de alumno.`,
-  },
-  {
-    nombre: "Lucas Camino",
-    imagen: "/Caminor.jpg",
-    descripcion: "Diseño e implementación del componente BarraNavegacion para una navegación intuitiva.",
-  },
-  {
-    nombre: "Tiago Segobia",
-    imagen: "/logominas.jpeg",
-    descripcion: "Aplicación de estilos generales para las vistas.",
-  },
 ];
 
 export default function Acerca() {
