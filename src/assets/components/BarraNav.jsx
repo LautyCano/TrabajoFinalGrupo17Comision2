@@ -80,7 +80,7 @@ const BarraNav = ({ userType, login, logout }) => {
         <Container fluid>
           <Navbar.Brand as={Link} to="/" className="logo-nav d-flex align-items-center">
             <img
-              src="/LogoGrande.png"
+              src="/logo1.png"
               alt="Logo de VisualStore"
               className="logo-img me-2"
               style={{ maxHeight: '65px' }}
