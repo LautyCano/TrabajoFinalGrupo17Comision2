@@ -33,7 +33,10 @@ export const initializeProducto = () => {
       { id: '8', nombre: "Mother ASUS ROG STRIX", precio: 580950, descripcion: "Z890-A GAMING WIFI LGA1851", categoria: "Componentes-PC", stock: 56, imagen: "/asusrogz890.jpg", favorito: false },
       { id: '9', nombre: "Placa de Video Asrock", precio: 1043217, descripcion: "Radeon RX 9070 XT 16GB GDDR6 Steel Legend Dark", categoria: "Componentes-PC", stock: 31, imagen: "/radeon9070.jpg", favorito: false },
       { id: '10', nombre: "Auriculares Logitech G335", precio: 108990, descripcion: "White PC/XBOX/PS", categoria: "Componentes-PC", stock: 14, imagen: "/Auris.jpg", favorito: false },
-      { id: '11', nombre: "Notebook HP 15", precio: 551860, descripcion: "FC0037WM 15.6 pulgadas R5-7520U 8GB SSD 256GB FHD Win11", categoria: "Notebooks", stock: 45, imagen: "/notebook.jpg", favorito: false },
+      { id: '11', nombre: "Fuente de Poder", precio: 214304, descripcion: "Fuente Gigabyte Ud850gm 80 Gold Modular", categoria: "Fuentes", stock: 15, imagen: "/fuente de poder.jpg", favorito: false },
+      { id: '12', nombre: "Notebook HP 15", precio: 551860, descripcion: "FC0037WM 15.6 pulgadas R5-7520U 8GB SSD 256GB FHD Win11", categoria: "Notebooks", stock: 45, imagen: "/notebook.jpg", favorito: false },
+      { id: '13', nombre: "Notebook HP 15", precio: 551860, descripcion: "FC0037WM 15.6 pulgadas R5-7520U 8GB SSD 256GB FHD Win11", categoria: "Notebooks", stock: 45, imagen: "/notebook.jpg", favorito: false },
+      { id: '14', nombre: "Notebook HP 15", precio: 551860, descripcion: "FC0037WM 15.6 pulgadas R5-7520U 8GB SSD 256GB FHD Win11", categoria: "Notebooks", stock: 45, imagen: "/notebook.jpg", favorito: false },
     ];
     localStorage.setItem(PRODUCTO_STORAGE_KEY, JSON.stringify(initialProductos));
     console.log('Productos precargados inicializados.');
