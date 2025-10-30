@@ -3,12 +3,11 @@ import { Card, Row, Col, Container } from 'react-bootstrap';
 
 const integrantes = [
   {
-    nombre: "Lautaro Cano (administrador)",
-    imagen: "/descarga.jpeg",
+    nombre: "Fernandez Ocampo Lucas Adrian",
+    imagen: "/lucasimage.jpg",
     descripcion: `- Desarrollo de las funciones de services
     - Implementación del componente FormularioAgregarProducto
     - Creación del componente ListaProductos
-    - Diseño y desarrollo del componente Home, detalles Producto,editar, eliminar Producto
     - Barra de navegación, rutas.
     - Solucionó errores de Bootstrap y React Router.`,
   },
@@ -17,7 +16,7 @@ const integrantes = [
 export default function Acerca() {
   return (
     <Container className="my-5">
-      <h2 className="text-center text-white mb-4">Equipo de Desarrollo</h2>
+      <h2 className="text-center text-white mb-4">Desarrollador</h2>
       <Row className="g-4 justify-content-center">
         {integrantes.map((persona, index) => (
           <Col key={index} xs={12} sm={6} md={4} lg={3}>

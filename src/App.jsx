@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import BarraNav from "./assets/Components/BarraNav";
+import BarraNav from "./assets/components/BarraNav";
 import AppRoutes from "./Routes";
-import { getProductos, initializeProducto } from "./assets/Services/ServicesPro";
-import PapeleraAdmin from "./assets/Components/Papelera";
+import { getProductos, initializeProducto } from "./assets/services/ServicesPro";
+import PapeleraAdmin from "./assets/components/Papelera";
 
 function App() {
   // Estado para el tipo de usuario
@@ -31,7 +31,7 @@ function App() {
 
   // Funciones de login/logout
   const login = (email, password) => {
-    if (email === "lautaromatias@gmail.com" && password === "matykano123") {
+    if (email === "lucasfer@gmail.com" && password === "lucas1234") {
       setUserType("admin");
     } else {
       setUserType("user");
@@ -54,7 +54,6 @@ function App() {
         />
       </div>
       <PapeleraAdmin userType={userType} setProductos={setProductos} />
-
     </BrowserRouter>
   );
 }
